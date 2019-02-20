@@ -9,15 +9,16 @@ import pandas as pd
 #import os
 import numpy as np
 import scipy.stats as sp
-
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 class data:
     '''
     This class is used to prepared all the data ewe need for next analysis
     '''
     #load the whole data 
-#    def _init_(self,dataBasic,index):
-#        self.dataBasic = dataBasic
-#        self.index = index
+    def _init_(self,dataBasic,index):
+        self.dataBasic = dataBasic
+        self.index = index
     
     index = ["Date","EUR","JPY","USD","GBP","CHF","AUD","CAD"]
     dataBasic = pd.read_csv("./eurofxref-hist.csv")
@@ -62,9 +63,19 @@ class data:
     def getGeneratedPath(logReturn):
         '''Return the generated path DataFrame (261 * 1000)'''
         stdOfEUR = logReturn['EUR'].std()
-        for i in range(1000):
-            path = stdOfEUR * np.random.randn(1000)
-
+        pathRandom = stdOfEUR * np.random.standard_normal(261)
+        path = pathRandom
+        for j in range(1,261):
+            path[j] = path[j-1] + pathRandom[j]
+        MonteCarloPath = pd.DataFrame(path)
+        for i in range(999):
+            pathRandom = stdOfEUR * np.random.standard_normal(261)
+            path = pathRandom
+            for j in range(1,261):
+                path[j] = path[j-1] + pathRandom[j]
+            MonteCarloPath.insert(0,str(i+1),path)
+        return MonteCarloPath
+        
     
 if __name__ == '__main__':
     print(data.logReturn)
