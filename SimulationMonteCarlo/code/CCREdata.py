@@ -6,21 +6,27 @@ Created on Wed Feb 20 11:37:21 2019
 """
 
 import pandas as pd
-import os
+#import os
 import numpy as np
 import scipy.stats as sp
 
-def data():
-
- #load the whole data 
+class data:
+    '''
+    This class is used to prepared all the data ewe need for next analysis
+    '''
+    #load the whole data 
+#    def _init_(self,dataBasic,index):
+#        self.dataBasic = dataBasic
+#        self.index = index
+    
+    index = ["Date","EUR","JPY","USD","GBP","CHF","AUD","CAD"]
     dataBasic = pd.read_csv("./eurofxref-hist.csv")
- 
- #get the EUR data with changed process with respect to GBP = 1
+    #get the EUR data with changed process with respect to GBP = 1
     dataEUR = dataBasic["GBP"]
     dataInUseForEUR = 1./dataEUR
  
- #form an in use dataframe
-    index = ["Date","EUR","JPY","USD","GBP","CHF","AUD","CAD"]
+    #form an in use dataframe
+    
     dataInUseTemp = dataBasic[["Date","JPY","USD","GBP","CHF","AUD","CAD"]]
  
     temp = 1/dataBasic["GBP"]
@@ -34,16 +40,31 @@ def data():
     dataInTime = dataInTime[dataInTime['Date'] > '2012-12-31']
     dataWithoutTime = dataInTime[["EUR","JPY","USD","GBP","CHF","AUD","CAD"]]
     temp1 = dataWithoutTime
- #log returns 
+    #log returns 
     for i in range(len(index)-1):
         temp1[index[i+1]] = dataWithoutTime[index[i+1]]/dataWithoutTime[index[i+1]].shift(-1)
         temp1[index[i+1]] = np.log(temp1[index[i+1]])
     logReturn = temp1
     
-    Corr = logReturn.corr
-    stdOfEUR = sp.norm.std(logReturn['EUR'])
+    def getLogReturn(logReturn):
+        '''Return the  log returns'''
+        return logReturn
     
+    def getDataWithoutTime(dataWithoutTime):
+        '''Return the dataWithoutTime'''
+        return dataWithoutTime
     
+    def getCorr(logReturn):
+        '''Return the Correlation matrix of log returns'''
+        Corr = logReturn.corr
+        return Corr
+        
+    def getGeneratedPath(logReturn):
+        '''Return the generated path DataFrame (261 * 1000)'''
+        stdOfEUR = logReturn['EUR'].std()
+        for i in range(1000):
+            path = stdOfEUR * np.random.randn(1000)
+
     
 if __name__ == '__main__':
-    data()
+    print(data.logReturn)
