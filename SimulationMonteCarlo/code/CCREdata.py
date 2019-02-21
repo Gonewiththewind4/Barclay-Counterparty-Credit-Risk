@@ -11,7 +11,7 @@ import numpy as np
 #import scipy.stats as sp
 #import matplotlib.pyplot as plt
 #import matplotlib as mpl
-class data:
+class data():
     '''
     This class is used to prepared all the data ewe need for next analysis
     '''
