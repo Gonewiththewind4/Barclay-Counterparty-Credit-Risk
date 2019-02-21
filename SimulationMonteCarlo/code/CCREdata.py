@@ -8,17 +8,19 @@ Created on Wed Feb 20 11:37:21 2019
 import pandas as pd
 #import os
 import numpy as np
-import scipy.stats as sp
-import matplotlib.pyplot as plt
-import matplotlib as mpl
+#import scipy.stats as sp
+#import matplotlib.pyplot as plt
+#import matplotlib as mpl
 class data:
     '''
     This class is used to prepared all the data ewe need for next analysis
     '''
     #load the whole data 
-    def _init_(self,dataBasic,index):
-        self.dataBasic = dataBasic
-        self.index = index
+#    def _init_(self,dataBasic,index,startTime,endTime):
+#        self.dataBasic = dataBasic
+#        self.index = index
+#        self.startTime = startTime
+#        self.endTime = endTIme
     
     index = ["Date","EUR","JPY","USD","GBP","CHF","AUD","CAD"]
     dataBasic = pd.read_csv("./eurofxref-hist.csv")
