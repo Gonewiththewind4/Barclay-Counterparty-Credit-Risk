@@ -13,7 +13,7 @@ import numpy as np
 #import matplotlib as mpl
 class data():
     '''
-    This class is used to prepared all the data ewe need for next analysis
+    This class is used to prepared all the data we need for next analysis
     '''
     #load the whole data 
 #    def _init_(self,dataBasic,index,startTime,endTime):
