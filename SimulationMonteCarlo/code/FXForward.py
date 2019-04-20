@@ -4,7 +4,7 @@ Created on Thu Feb 21 00:29:13 2019
 
 @author: Gonewiththewind
 """
-import pandas as pa
+#import pandas as pa
 
 class FXForward():
     '''
