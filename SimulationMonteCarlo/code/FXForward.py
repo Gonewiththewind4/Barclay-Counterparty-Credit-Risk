@@ -6,7 +6,7 @@ Created on Thu Feb 21 00:29:13 2019
 """
 #import pandas as pa
 
-class FXForward():
+class FXForward(object):
     '''
     we use this class to price a trade of forward contract
     
@@ -46,4 +46,3 @@ if __name__ == '__main__':
     FXForward._init_(FXForward,'GBP', 'GBP', 800, 800, '2014-10-24')
     print(FXForward._repr_(FXForward))
     print(FXForward.pricingTheTrade(FXForward,1))
-    
