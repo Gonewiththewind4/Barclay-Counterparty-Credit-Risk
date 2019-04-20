@@ -6,4 +6,4 @@ python:
 
 script:
 
-    - python 
+    - python SimulationMonteCarlo\code\FXForward.py
