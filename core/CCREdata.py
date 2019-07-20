@@ -23,7 +23,7 @@ class data():
 #        self.endTime = endTIme
     
     index = ["Date","EUR","JPY","USD","GBP","CHF","AUD","CAD"]
-    dataBasic = pd.read_csv("./database/eurofxref-hist.csv")
+    dataBasic = pd.read_csv("../database/eurofxref-hist.csv")
     #get the EUR data with changed process with respect to GBP = 1
     dataEUR = dataBasic["GBP"]
     dataInUseForEUR = 1./dataEUR
@@ -80,4 +80,5 @@ class data():
         
     
 if __name__ == '__main__':
-    print(data.logReturn)
+    #print(data.logReturn)
+    print(data.getGeneratedPath(data.logReturn))
